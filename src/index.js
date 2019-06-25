@@ -4,9 +4,10 @@ import { BrowserRouter, Switch, Link, Route } from 'react-router-dom';
 import Home from 'pages/home/home'
 import Index from 'pages/index/index'
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from 'reducers/reducers';
-const store = createStore(reducers); 
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import appReducer from 'reducers/reducers';
+const store = createStore(appReducer, applyMiddleware(thunkMiddleware)); 
 
 render(
     <Provider store={store}>

@@ -1,4 +1,5 @@
-import { ADD, DEL, RESET } from 'pages/home/home_action';
+import { ADD, DEL, RESET, RECEIVE_DATA } from 'pages/home/home_action';
+import { combineReducers } from 'redux';
 
 function counter(state={count:0}, action) {
     switch (action.type) {
@@ -19,4 +20,28 @@ function counter(state={count:0}, action) {
     }
 }
 
-export default counter;
+function roles(state=[], action) {
+    switch (action.type) {
+        case 'GET_ROLES':
+            return ['a', 'b', 'c'];
+        default:
+            return state;
+    }
+}
+
+
+function data(state={}, action) {
+    switch (action.type) {
+        case 'RECEIVE_DATA':
+            return action.data;
+        default:
+            return state;
+    }
+}
+let homeReducers = combineReducers({
+    counter,
+    roles,
+    data
+});
+
+export default homeReducers;
